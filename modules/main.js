@@ -56,7 +56,7 @@ function onTimeout() {
       var interval = Math.max(1, prefs.getPref(BASE + 'intervalSeconds'));
       lastTimeout = timer.setTimeout(onTimeout, interval * 1000);
     })
-    .error(function(error) {
+    .catch(function(error) {
       Cu.reportError(error);
     });
 }
