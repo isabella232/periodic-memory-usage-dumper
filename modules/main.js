@@ -1,4 +1,4 @@
-var BASE = 'extensions.restartless@piro.sakura.ne.jp.';
+var BASE = 'extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.';
 
 var prefs = require('lib/prefs').prefs;
 prefs.setDefaultPref(BASE + 'anonymize', false);
