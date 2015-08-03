@@ -21,9 +21,10 @@ function generateDumpFilename() {
 }
 
 function prepareDirectory(aDir) {
-  if (aDir.parent && !aDir.parent.exists())
+  if (aDir.parent)
     prepareDirectory(aDir.parent);
-  aDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0700);
+  if (!aDir.parent.exists()
+    aDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0700);
 }
 
 function dumpMemoryUsage() {
