@@ -92,7 +92,7 @@ var periodicDumper = {
 
 var idleService = Cc['@mozilla.org/widget/idleservice;1']
                     .getService(Ci.nsIIdleService);
-var idleSeconds = Math.max(1, prefs.getPref(BASE + 'idleSeconds'));
+var idleSeconds = Math.max(10, prefs.getPref(BASE + 'idleSeconds'));
 idleService.addIdleObserver(periodicDumper, idleSeconds);
 
 function shutdown() {
