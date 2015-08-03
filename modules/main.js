@@ -1,14 +1,17 @@
 var BASE = 'extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.';
 var prefs = require('lib/prefs').prefs;
 
+var MINUTE_IN_SECONDS = 60;
+var HOUR_IN_MINUTES = 60;
+var DAY_IN_HOURS = 24;
+var DAY_IN_SECONDS = DAY_IN_HOURS * HOUR_IN_MINUTES * MINUTE_IN_SECONDS;
 {
-  let MINUTE_IN_SECONDS = 60;
-
   prefs.setDefaultPref(BASE + 'debug', false);
   prefs.setDefaultPref(BASE + 'anonymize', false);
   prefs.setDefaultPref(BASE + 'intervalSeconds', 5 * MINUTE_IN_SECONDS);
   prefs.setDefaultPref(BASE + 'idleSeconds', 3 * MINUTE_IN_SECONDS);
-  prefs.setDefaultPref(BASE + 'maxDumps', 60);
+  // 5 days * 8 hours per a day * 60 minutes in one hour / every 5 minutes = 480 files per a week
+  prefs.setDefaultPref(BASE + 'maxFiles', 500);
 
   let dir = Cc['@mozilla.org/file/directory_service;1']
                .getService(Components.interfaces.nsIProperties)
@@ -34,14 +37,19 @@ var periodicDumper = {
       aDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0700);
   },
 
+  getOutputDirectory: function() {
+    var file = Cc['@mozilla.org/file/local;1']
+                 .createInstance(Ci.nsILocalFile);
+    file.initWithPath(prefs.getPref(BASE + 'outputDirectory'));
+    return file;
+  },
+
   dumpMemoryUsage: function() {
     if (prefs.getPref(BASE + 'debug'))
       console.log('dump start');
     return new Promise((function(resolve, reject) {
       var localName = this.generateDumpFilename();
-      var file = Cc['@mozilla.org/file/local;1']
-                   .createInstance(Ci.nsILocalFile);
-      file.initWithPath(prefs.getPref(BASE + 'outputDirectory'));
+      var file = this.getOutputDirectory();
       file.append(localName);
       this.prepareDirectory(file.parent);
 
@@ -57,11 +65,37 @@ var periodicDumper = {
     }).bind(this));
   },
 
+  clearExpiredFiles: function() {
+    var dir = this.getOutputDirectory();
+    if (!dir.exists())
+      return;
+
+    var files = dir.directoryEntries;
+    var allFiles = [];
+    while (files.hasMoreElements()) {
+      let file = files.getNext().QueryInterface(Ci.nsIFile);
+      allFiles.push(file);
+    }
+
+    var maxFiles = Math.max(10, prefs.getPref(BASE + 'maxFiles'));
+    if (allFiles.length <= maxFiles)
+      return;
+
+    allFiles.sort(function(a, b) {
+      return a.lastModifiedTime - b.lastModifiedTime;
+    });
+    var removedFiles = allFiles.slice(maxFiles);
+    removedFiles.forEach(function(file) {
+      file.remove(true);
+    });
+  },
+
   lastTimeout: null,
 
   onTimeout: function() {
     this.dumpMemoryUsage()
       .then((function() {
+        this.clearExpiredFiles();
         var interval = Math.max(1, prefs.getPref(BASE + 'intervalSeconds'));
         this.lastTimeout = timer.setTimeout(this.onTimeout.bind(this), interval * 1000);
       }).bind(this))

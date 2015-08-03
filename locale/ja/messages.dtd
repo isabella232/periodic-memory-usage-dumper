@@ -7,4 +7,6 @@
 <!ENTITY config.anonymize "プライバシーに関わる情報を匿名化する">
 <!ENTITY config.outputDirectory.before "ファイルの保存先ディレクトリ">
 <!ENTITY config.outputDirectory.after  "">
+<!ENTITY config.maxFiles.before "最新の">
+<!ENTITY config.maxFiles.after  "ファイルのみ保持する">
 <!ENTITY config.debug "ブラウザコンソールにログを出力する">

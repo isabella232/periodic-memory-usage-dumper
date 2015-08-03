@@ -29,6 +29,9 @@
             <preference id="outputDirectory"
                 name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.outputDirectory"
                 type="unichar"/>
+            <preference id="maxFiles"
+                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.maxFiles"
+                type="int"/>
             <preference id="debug"
                 name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.debug"
                 type="bool"/>
@@ -72,6 +75,19 @@
             <label id="outputDirectory-label-after"
                 control="outputDirectory-textbox"
                 value="&config.outputDirectory.after;"/>
+        </hbox>
+
+        <hbox align="center">
+            <label id="maxFiles-label-before"
+                control="maxFiles-textbox"
+                value="&config.maxFiles.before;"/>
+            <textbox id="maxFiles-textbox"
+                type="number"
+                size="4"
+                preference="maxFiles"/>
+            <label id="maxFiles-label-after"
+                control="maxFiles-textbox"
+                value="&config.maxFiles.after;"/>
         </hbox>
 
         <checkbox label="&config.debug;" preference="debug"/>
