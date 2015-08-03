@@ -75,6 +75,7 @@ var periodicDumper = {
   stop: function() {
     if (this.lastTimeout)
       timer.clearTimeout(this.lastTimeout);
+    this.lastTimeout = null;
   },
 
   observe: function(aSubject, aTopic, aData) {
