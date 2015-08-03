@@ -38,7 +38,7 @@
                 preference="intervalSeconds"/>
             <label id="intervalSeconds-label-after"
                 control="intervalSeconds-textbox"
-                value="&config.intervalSeconds.before;"/>
+                value="&config.intervalSeconds.after;"/>
         </hbox>
 
         <checkbox label="&config.anonymize;" preference="anonymize"/>
@@ -52,7 +52,7 @@
                 flex="1"/>
             <label id="outputDirectory-label-after"
                 control="outputDirectory-textbox"
-                value="&config.outputDirectory.before;"/>
+                value="&config.outputDirectory.after;"/>
         </hbox>
     </prefpane>
 </prefwindow>
