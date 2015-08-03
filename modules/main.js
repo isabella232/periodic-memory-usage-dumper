@@ -2,10 +2,13 @@ var BASE = 'extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.';
 var prefs = require('lib/prefs').prefs;
 
 {
+  let MINUTE_IN_SECONDS = 60;
+
   prefs.setDefaultPref(BASE + 'debug', false);
   prefs.setDefaultPref(BASE + 'anonymize', false);
-  prefs.setDefaultPref(BASE + 'intervalSeconds', 60);
-  prefs.setDefaultPref(BASE + 'idleSeconds', 60);
+  prefs.setDefaultPref(BASE + 'intervalSeconds', 5 * MINUTE_IN_SECONDS);
+  prefs.setDefaultPref(BASE + 'idleSeconds', 3 * MINUTE_IN_SECONDS);
+  prefs.setDefaultPref(BASE + 'maxDumps', 60);
 
   let dir = Cc['@mozilla.org/file/directory_service;1']
                .getService(Components.interfaces.nsIProperties)
