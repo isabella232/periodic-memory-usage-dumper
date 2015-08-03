@@ -23,7 +23,7 @@ function generateDumpFilename() {
 function prepareDirectory(aDir) {
   if (aDir.parent && !aDir.parent.exists())
     prepareDirectory(aDir.parent);
-  aDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0600);
+  aDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0700);
 }
 
 function dumpMemoryUsage() {
