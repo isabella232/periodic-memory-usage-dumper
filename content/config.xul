@@ -20,6 +20,12 @@
             <preference id="intervalSeconds"
                 name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.intervalSeconds"
                 type="int"/>
+            <preference id="anonymize"
+                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.anonymize"
+                type="bool"/>
+            <preference id="outputDirectory"
+                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.outputDirectory"
+                type="file"/>
         </preferences>
 
         <hbox align="center">
@@ -28,10 +34,25 @@
                 value="&config.intervalSeconds.before;"/>
             <textbox id="intervalSeconds-textbox"
                 type="number"
+                size="4"
                 preference="intervalSeconds"/>
             <label id="intervalSeconds-label-after"
                 control="intervalSeconds-textbox"
                 value="&config.intervalSeconds.before;"/>
+        </hbox>
+
+        <checkbox label="&config.anonymize;" preference="anonymize"/>
+
+        <hbox align="center">
+            <label id="outputDirectory-label-before"
+                control="outputDirectory-textbox"
+                value="&config.outputDirectory.before;"/>
+            <textbox id="outputDirectory-textbox"
+                preference="outputDirectory"
+                flex="1"/>
+            <label id="outputDirectory-label-after"
+                control="outputDirectory-textbox"
+                value="&config.outputDirectory.before;"/>
         </hbox>
     </prefpane>
 </prefwindow>

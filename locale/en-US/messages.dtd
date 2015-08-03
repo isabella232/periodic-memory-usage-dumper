@@ -2,3 +2,6 @@
 <!ENTITY config.general "General">
 <!ENTITY config.intervalSeconds.before "Dump memory usage on every">
 <!ENTITY config.intervalSeconds.after  "seconds">
+<!ENTITY config.anonymize "Anonymize privacy data">
+<!ENTITY config.outputDirectory.before "Directory to output files">
+<!ENTITY config.outputDirectory.after  "">

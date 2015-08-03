@@ -2,3 +2,6 @@
 <!ENTITY config.general "全般">
 <!ENTITY config.intervalSeconds.before "メモリ使用量を">
 <!ENTITY config.intervalSeconds.after  "秒ごとに出力する">
+<!ENTITY config.anonymize "プライバシーに関わる情報を匿名化する">
+<!ENTITY config.outputDirectory.before "ファイルの保存先ディレクトリ">
+<!ENTITY config.outputDirectory.after  "">
