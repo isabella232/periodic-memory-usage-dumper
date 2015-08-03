@@ -2,6 +2,7 @@ var BASE = 'extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.';
 var prefs = require('lib/prefs').prefs;
 
 {
+  prefs.setDefaultPref(BASE + 'debug', false);
   prefs.setDefaultPref(BASE + 'anonymize', false);
   prefs.setDefaultPref(BASE + 'intervalSeconds', 60);
   prefs.setDefaultPref(BASE + 'idleSeconds', 60);
@@ -31,7 +32,8 @@ var periodicDumper = {
   },
 
   dumpMemoryUsage: function() {
-    console.log('dump start');
+    if (prefs.getPref(BASE + 'debug'))
+      console.log('dump start');
     return new Promise((function(resolve, reject) {
       var localName = this.generateDumpFilename();
       var file = Cc['@mozilla.org/file/local;1']
@@ -45,7 +47,8 @@ var periodicDumper = {
       var dumper = Cc['@mozilla.org/memory-info-dumper;1']
                      .getService(Ci.nsIMemoryInfoDumper);
       dumper.dumpMemoryReportsToNamedFile(file.path, function() {
-        console.log('dump finish (' + ((Date.now() - start) / 1000) + 'sec.)');
+        if (prefs.getPref(BASE + 'debug'))
+          console.log('dump finish (' + ((Date.now() - start) / 1000) + 'sec.)');
         resolve();
       }, null, anonymize);
     }).bind(this));
@@ -78,12 +81,14 @@ var periodicDumper = {
     // console.log([aSubject, aTopic, aData]);
     switch (aTopic) {
       case 'idle':
-        console.log('idle: start to dump');
+        if (prefs.getPref(BASE + 'debug'))
+          console.log('idle: start to dump');
         this.start();
         break;
 
       case 'active':
-        console.log('active: stop to dump');
+        if (prefs.getPref(BASE + 'debug'))
+          console.log('active: stop to dump');
         this.stop();
         break;
     }
