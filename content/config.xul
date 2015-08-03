@@ -29,6 +29,9 @@
             <preference id="outputDirectory"
                 name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.outputDirectory"
                 type="unichar"/>
+            <preference id="debug"
+                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.debug"
+                type="bool"/>
         </preferences>
 
         <hbox align="center">
@@ -70,5 +73,7 @@
                 control="outputDirectory-textbox"
                 value="&config.outputDirectory.after;"/>
         </hbox>
+
+        <checkbox label="&config.debug;" preference="debug"/>
     </prefpane>
 </prefwindow>

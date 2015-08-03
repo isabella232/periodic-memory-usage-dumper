@@ -7,3 +7,4 @@
 <!ENTITY config.anonymize "Anonymize privacy data">
 <!ENTITY config.outputDirectory.before "Directory to output files">
 <!ENTITY config.outputDirectory.after  "">
+<!ENTITY config.debug "Output logs to the browser console">
