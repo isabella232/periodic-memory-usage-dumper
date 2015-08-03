@@ -1,0 +1,4 @@
+<!ENTITY config.title "Periodic Memory Usage Dumper Configuration">
+<!ENTITY config.general "General">
+<!ENTITY config.intervalSeconds.before "Dump memory usage on every">
+<!ENTITY config.intervalSeconds.after  "seconds">

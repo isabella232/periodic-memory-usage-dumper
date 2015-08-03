@@ -1,0 +1,4 @@
+<!ENTITY config.title "Periodic Memory Usage Dumper設定">
+<!ENTITY config.general "全般">
+<!ENTITY config.intervalSeconds.before "メモリ使用量を">
+<!ENTITY config.intervalSeconds.after  "秒ごとに出力する">

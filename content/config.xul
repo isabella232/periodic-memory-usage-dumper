@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+ - @fileOverview configuration dialog for restartless addons
+ - @author       YUKI "Piro" Hiroshi
+ - @version      2
+ -
+ - @license
+ -   The MIT License, Copyright (c) 2010 YUKI "Piro" Hiroshi.
+ -   https://github.com/piroor/restartless/blob/master/license.txt
+ - @url http://github.com/piroor/restartless
+ - -->
+<?xml-stylesheet href="chrome://global/skin/"?>
+<!DOCTYPE prefwindow SYSTEM "chrome://periodic-memory-usage-dumper/locale/messages.dtd">
+<prefwindow id="periodic-memory-usage-dumper-config"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    title="&config.title;">
+
+    <prefpane id="prefpane-general" label="&config.general;">
+        <preferences>
+            <preference id="intervalSeconds"
+                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.intervalSeconds"
+                type="int"/>
+        </preferences>
+
+        <hbox align="center">
+            <label id="intervalSeconds-label-before"
+                control="intervalSeconds-textbox"
+                value="&config.intervalSeconds.before;"/>
+            <textbox id="intervalSeconds-textbox"
+                type="number"
+                preference="intervalSeconds"/>
+            <label id="intervalSeconds-label-after"
+                control="intervalSeconds-textbox"
+                value="&config.intervalSeconds.before;"/>
+        </hbox>
+    </prefpane>
+</prefwindow>
