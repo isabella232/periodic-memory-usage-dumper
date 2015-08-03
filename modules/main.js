@@ -4,6 +4,7 @@ var prefs = require('lib/prefs').prefs;
 {
   prefs.setDefaultPref(BASE + 'anonymize', false);
   prefs.setDefaultPref(BASE + 'intervalSeconds', 60);
+  prefs.setDefaultPref(BASE + 'idleSeconds', 60);
 
   let dir = Cc['@mozilla.org/file/directory_service;1']
                .getService(Components.interfaces.nsIProperties)
@@ -56,21 +57,46 @@ var periodicDumper = {
     this.dumpMemoryUsage()
       .then((function() {
         var interval = Math.max(1, prefs.getPref(BASE + 'intervalSeconds'));
-        lastTimeout = timer.setTimeout(this.onTimeout.bind(this), interval * 1000);
+        this.lastTimeout = timer.setTimeout(this.onTimeout.bind(this), interval * 1000);
       }).bind(this))
       .catch(function(error) {
         Cu.reportError(error);
       });
+  },
+
+  start: function() {
+    this.stop();
+    this.onTimeout();
+  },
+
+  stop: function() {
+    if (this.lastTimeout)
+      timer.clearTimeout(this.lastTimeout);
+  },
+
+  observe: function(aSubject, aTopic, aData) {
+    switch (aTopic) {
+      case 'idle':
+        this.start();
+        break;
+
+      case 'active':
+        this.stop();
+        break;
+    }
   }
 };
 
-periodicDumper.onTimeout();
+var idleService = Cc['@mozilla.org/widget/idleservice;1']
+                    .getService(Ci.nsIIdleService);
+var idleTime = Math.max(1, prefs.getPref(BASE + 'idleSeconds')) * 1000;
+idleService.addIdleObserver(periodicDumper, idleTime);
 
 function shutdown() {
-  if (periodicDumper.lastTimeout)
-    timer.clearTimeout(periodicDumper.lastTimeout);
+  idleService.removeIdleObserver(periodicDumper, idleTime);
+  periodicDumper.stop();
 
   timer = Promise = prefs =
-    periodicDumper =
+    idleService = periodicDumper =
       undefined;
 }

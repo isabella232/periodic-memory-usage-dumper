@@ -17,6 +17,9 @@
 
     <prefpane id="prefpane-general" label="&config.general;">
         <preferences>
+            <preference id="idleSeconds"
+                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.idleSeconds"
+                type="int"/>
             <preference id="intervalSeconds"
                 name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.intervalSeconds"
                 type="int"/>
@@ -27,6 +30,19 @@
                 name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.outputDirectory"
                 type="unichar"/>
         </preferences>
+
+        <hbox align="center">
+            <label id="idleSeconds-label-before"
+                control="idleSeconds-textbox"
+                value="&config.idleSeconds.before;"/>
+            <textbox id="idleSeconds-textbox"
+                type="number"
+                size="4"
+                preference="idleSeconds"/>
+            <label id="idleSeconds-label-after"
+                control="idleSeconds-textbox"
+                value="&config.idleSeconds.after;"/>
+        </hbox>
 
         <hbox align="center">
             <label id="intervalSeconds-label-before"

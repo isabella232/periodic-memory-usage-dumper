@@ -1,5 +1,7 @@
 <!ENTITY config.title "Periodic Memory Usage Dumper設定">
 <!ENTITY config.general "全般">
+<!ENTITY config.idleSeconds.before "">
+<!ENTITY config.idleSeconds.after  "秒以上操作されなかったら出力を開始する">
 <!ENTITY config.intervalSeconds.before "メモリ使用量を">
 <!ENTITY config.intervalSeconds.after  "秒ごとに出力する">
 <!ENTITY config.anonymize "プライバシーに関わる情報を匿名化する">

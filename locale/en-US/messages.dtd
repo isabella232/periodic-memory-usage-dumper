@@ -1,5 +1,7 @@
 <!ENTITY config.title "Periodic Memory Usage Dumper Configuration">
 <!ENTITY config.general "General">
+<!ENTITY config.idleSeconds.before "Start to dump when idleded over">
+<!ENTITY config.idleSeconds.after  "seconds">
 <!ENTITY config.intervalSeconds.before "Dump memory usage on every">
 <!ENTITY config.intervalSeconds.after  "seconds">
 <!ENTITY config.anonymize "Anonymize privacy data">
