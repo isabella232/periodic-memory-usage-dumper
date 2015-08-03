@@ -1,4 +1,6 @@
 content periodic-memory-usage-dumper content/
+locale periodic-memory-usage-dumper en-US locale/en-US/
+locale periodic-memory-usage-dumper ja locale/ja/
 
 # These derectives are ignored when this is loaded as a bootstrapped addon.
 component	{ea952e00-3b04-11e3-aa6e-0800200c9a66}	components/bundled.js
