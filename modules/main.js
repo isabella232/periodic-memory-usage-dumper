@@ -13,8 +13,8 @@ var prefs = require('lib/prefs').prefs;
   prefs.setDefaultPref(BASE + 'outputDirectory', dir.path);
 }
 
-var timer = Cu.import('resource://gre/modules/Timer.jsm');
-var { Promise } = Cu.import('resource://gre/modules/Promise.jsm');
+var timer = Cu.import('resource://gre/modules/Timer.jsm', {});
+var { Promise } = Cu.import('resource://gre/modules/Promise.jsm', {});
 
 var periodicDumper = {
   generateDumpFilename: function() {
