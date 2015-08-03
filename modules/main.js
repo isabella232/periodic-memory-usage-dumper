@@ -65,7 +65,7 @@ var periodicDumper = {
     }).bind(this));
   },
 
-  clearExpiredFiles: function() {
+  clearTooManyFiles: function() {
     var dir = this.getOutputDirectory();
     if (!dir.exists())
       return;
@@ -95,7 +95,7 @@ var periodicDumper = {
   onTimeout: function() {
     this.dumpMemoryUsage()
       .then((function() {
-        this.clearExpiredFiles();
+        this.clearTooManyFiles();
         var interval = Math.max(1, prefs.getPref(BASE + 'intervalSeconds'));
         this.lastTimeout = timer.setTimeout(this.onTimeout.bind(this), interval * 1000);
       }).bind(this))
