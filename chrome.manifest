@@ -1,0 +1,6 @@
+content periodic-memory-usage-dumper content/
+
+# These derectives are ignored when this is loaded as a bootstrapped addon.
+component	{ea952e00-3b04-11e3-aa6e-0800200c9a66}	components/bundled.js
+contract	@piro.sakura.ne.jp/periodic-memory-usage-dumper/bundled;1	{ea952e00-3b04-11e3-aa6e-0800200c9a66}
+category	profile-after-change	restartless@piro.sakura.ne.jp_BundledService	@piro.sakura.ne.jp/periodic-memory-usage-dumper/bundled;1
