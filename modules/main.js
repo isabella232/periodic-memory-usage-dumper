@@ -75,12 +75,15 @@ var periodicDumper = {
   },
 
   observe: function(aSubject, aTopic, aData) {
+    // console.log([aSubject, aTopic, aData]);
     switch (aTopic) {
       case 'idle':
+        console.log('idle: start to dump');
         this.start();
         break;
 
       case 'active':
+        console.log('active: stop to dump');
         this.stop();
         break;
     }
