@@ -12,7 +12,7 @@ prefs.setDefaultPref(BASE + 'intervalSeconds', 60);
 }
 
 var timer = Cu.import('resource://gre/modules/Timer.jsm');
-var Promise = Cu.import('resource://gre/modules/Promise.jsm');
+var { Promise } = Cu.import('resource://gre/modules/Promise.jsm');
 
 function generateDumpFilename() {
   var now = new Date();
