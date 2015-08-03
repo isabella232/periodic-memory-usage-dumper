@@ -25,7 +25,7 @@
                 type="bool"/>
             <preference id="outputDirectory"
                 name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.outputDirectory"
-                type="file"/>
+                type="unichar"/>
         </preferences>
 
         <hbox align="center">
