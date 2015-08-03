@@ -82,7 +82,7 @@ var periodicDumper = {
       return;
 
     allFiles.sort(function(a, b) {
-      return a.lastModifiedTime - b.lastModifiedTime;
+      return b.lastModifiedTime - a.lastModifiedTime;
     });
     var removedFiles = allFiles.slice(maxFiles);
     removedFiles.forEach(function(file) {
