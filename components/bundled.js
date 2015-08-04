@@ -10,7 +10,7 @@
  */
 
 /** You must change ADDON_ID for your addon. */
-const ADDON_ID = 'periodic-memory-usage-dumper@piro.sakura.ne.jp';
+const ADDON_ID = 'periodic-memory-usage-dumper@clear-code.com';
 /** You must change CLASS_ID for your addon. If must be an UUID. */
 const CLASS_ID = '{bad05e3b-dbba-463b-b2bd-5e2aea2fb0fb}';
 
