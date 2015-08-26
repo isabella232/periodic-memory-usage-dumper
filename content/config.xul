@@ -18,22 +18,22 @@
     <prefpane id="prefpane-general" label="&config.general;">
         <preferences>
             <preference id="idleSeconds"
-                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.idleSeconds"
+                name="extensions.periodic-memory-usage-dumper@clear-code.com.idleSeconds"
                 type="int"/>
             <preference id="intervalSeconds"
-                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.intervalSeconds"
+                name="extensions.periodic-memory-usage-dumper@clear-code.com.intervalSeconds"
                 type="int"/>
             <preference id="anonymize"
-                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.anonymize"
+                name="extensions.periodic-memory-usage-dumper@clear-code.com.anonymize"
                 type="bool"/>
             <preference id="outputDirectory"
-                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.outputDirectory"
+                name="extensions.periodic-memory-usage-dumper@clear-code.com.outputDirectory"
                 type="unichar"/>
             <preference id="maxFiles"
-                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.maxFiles"
+                name="extensions.periodic-memory-usage-dumper@clear-code.com.maxFiles"
                 type="int"/>
             <preference id="debug"
-                name="extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.debug"
+                name="extensions.periodic-memory-usage-dumper@clear-code.com.debug"
                 type="bool"/>
         </preferences>
 

@@ -4,7 +4,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-var BASE = 'extensions.periodic-memory-usage-dumper@piro.sakura.ne.jp.';
+var BASE = 'extensions.periodic-memory-usage-dumper@clear-code.com.';
 var prefs = require('lib/prefs').prefs;
 
 var MINUTE_IN_SECONDS = 60;
