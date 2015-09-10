@@ -12,18 +12,25 @@ var HOUR_IN_MINUTES = 60;
 var DAY_IN_HOURS = 24;
 var DAY_IN_SECONDS = DAY_IN_HOURS * HOUR_IN_MINUTES * MINUTE_IN_SECONDS;
 {
-  prefs.setDefaultPref(BASE + 'debug', false);
-  prefs.setDefaultPref(BASE + 'anonymize', false);
-  prefs.setDefaultPref(BASE + 'intervalSeconds', 5 * MINUTE_IN_SECONDS);
-  prefs.setDefaultPref(BASE + 'idleSeconds', 3 * MINUTE_IN_SECONDS);
+  if (prefs.getDefaultPref(BASE + 'debug') === null)
+    prefs.setDefaultPref(BASE + 'debug', false);
+  if (prefs.getDefaultPref(BASE + 'anonymize') === null)
+    prefs.setDefaultPref(BASE + 'anonymize', false);
+  if (prefs.getDefaultPref(BASE + 'intervalSeconds') === null)
+    prefs.setDefaultPref(BASE + 'intervalSeconds', 5 * MINUTE_IN_SECONDS);
+  if (prefs.getDefaultPref(BASE + 'idleSeconds') === null)
+    prefs.setDefaultPref(BASE + 'idleSeconds', 3 * MINUTE_IN_SECONDS);
   // 5 days * 8 hours per a day * 60 minutes in one hour / every 5 minutes = 480 files per a week
-  prefs.setDefaultPref(BASE + 'maxFiles', 500);
+  if (prefs.getDefaultPref(BASE + 'maxFiles') === null)
+    prefs.setDefaultPref(BASE + 'maxFiles', 500);
 
+  if (prefs.getDefaultPref(BASE + 'outputDirectory') === null) {
   let dir = Cc['@mozilla.org/file/directory_service;1']
                .getService(Components.interfaces.nsIProperties)
                .get('Home', Components.interfaces.nsIFile);
   dir.append('firefox-memory-usage');
   prefs.setDefaultPref(BASE + 'outputDirectory', dir.path);
+  }
 }
 
 var timer = Cu.import('resource://gre/modules/Timer.jsm', {});
