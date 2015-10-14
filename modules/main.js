@@ -27,8 +27,8 @@ var DAY_IN_SECONDS = DAY_IN_HOURS * HOUR_IN_MINUTES * MINUTE_IN_SECONDS;
   if (prefs.getDefaultPref(BASE + 'outputDirectory') === null) {
     let dir = Cc['@mozilla.org/file/directory_service;1']
                  .getService(Components.interfaces.nsIProperties)
-                 .get('Home', Components.interfaces.nsIFile);
-    dir.append('firefox-memory-usage');
+                 .get('ProfD', Components.interfaces.nsIFile);
+    dir.append('memory-usage-dumps');
     prefs.setDefaultPref(BASE + 'outputDirectory', dir.path);
   }
 }
