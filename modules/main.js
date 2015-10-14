@@ -51,9 +51,22 @@ var periodicDumper = {
   },
 
   getOutputDirectory: function() {
+    var path = prefs.getPref(BASE + 'outputDirectory');
+    var DIRService = Cc['@mozilla.org/file/directory_service;1']
+                       .getService(Ci.nsIProperties)
+    path = path.replace(/\[[\\]]+\]/g, function(matched) {
+      var name = matched.replace(/^\[|\]$/g, '');
+      try {
+        let file = DIRService.get(name, Ci.nsIFile);
+        return file.path;
+      }
+      catch(error) {
+        return matched;
+      }
+    });
     var file = Cc['@mozilla.org/file/local;1']
                  .createInstance(Ci.nsILocalFile);
-    file.initWithPath(prefs.getPref(BASE + 'outputDirectory'));
+    file.initWithPath(path);
     return file;
   },
 
