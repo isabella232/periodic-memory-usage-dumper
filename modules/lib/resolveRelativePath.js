@@ -6,18 +6,18 @@
 
 var EXPORTED_SYMBOLS = ['resolveRelativePath'];
 
-var { Services } = Cu.import('resource://gre/modules/Services.jsm', {});
+var { Services } = Components.utils.import('resource://gre/modules/Services.jsm', {});
 
 var isWindows = /^win/i.test(Services.appinfo.OS);
 var pathDelimiter = isWindows ? '\\' : '/' ;
 
 function resolveRelativePath(aPath) {
-  var DIRService = Cc['@mozilla.org/file/directory_service;1']
-                     .getService(Ci.nsIProperties)
-  aPath = aPath.replace(/\[[\\]]+\]/g, function(matched) {
+  var DIRService = Components.classes['@mozilla.org/file/directory_service;1']
+                     .getService(Components.interfaces.nsIProperties)
+  aPath = aPath.replace(/\[[^\]]+\]/g, function(matched) {
     var name = matched.replace(/^\[|\]$/g, '');
     try {
-      let file = DIRService.get(name, Ci.nsIFile);
+      let file = DIRService.get(name, Components.interfaces.nsIFile);
       return file.path + pathDelimiter;
     }
     catch(error) {

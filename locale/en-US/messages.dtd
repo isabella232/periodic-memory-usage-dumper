@@ -7,6 +7,7 @@
 <!ENTITY config.anonymize "Anonymize privacy data">
 <!ENTITY config.outputDirectory.before "Directory to output files:">
 <!ENTITY config.outputDirectory.after  "">
+<!ENTITY config.outputDirectory.open   "Open">
 <!ENTITY config.outputDirectory.description "Available placeholders for a relative path: [Home], [ProfD], and so on.">
 <!ENTITY config.maxFiles.before "Store only latest">
 <!ENTITY config.maxFiles.after  "files">

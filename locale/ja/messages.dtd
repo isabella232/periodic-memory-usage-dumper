@@ -7,6 +7,7 @@
 <!ENTITY config.anonymize "プライバシーに関わる情報を匿名化する">
 <!ENTITY config.outputDirectory.before "ファイルの保存先ディレクトリ：">
 <!ENTITY config.outputDirectory.after  "">
+<!ENTITY config.outputDirectory.open   "開く">
 <!ENTITY config.outputDirectory.description "相対パス用に[Home], [ProfD]などのプレースホルダを利用できます。">
 <!ENTITY config.maxFiles.before "最新の">
 <!ENTITY config.maxFiles.after  "ファイルのみ保持する">

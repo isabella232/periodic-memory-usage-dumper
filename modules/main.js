@@ -33,6 +33,7 @@ var timer = Cu.import('resource://gre/modules/Timer.jsm', {});
 var { Promise } = Cu.import('resource://gre/modules/Promise.jsm', {});
 var { Services } = Cu.import('resource://gre/modules/Services.jsm', {});
 
+var ensureDirectoryExist = require('lib/ensureDirectoryExist').ensureDirectoryExist;
 var resolveRelativePath = require('lib/resolveRelativePath').resolveRelativePath;
 
 var isWindows = /^win/i.test(Services.appinfo.OS);
@@ -43,13 +44,6 @@ var periodicDumper = {
     var now = new Date();
     var timestamp = now.toISOString().replace(/:/g, '-');
     return timestamp + '.json.gz';
-  },
-
-  prepareDirectory: function(aDir) {
-    if (aDir.parent)
-      this.prepareDirectory(aDir.parent);
-    if (!aDir.exists())
-      aDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0700);
   },
 
   getOutputDirectory: function() {
@@ -68,7 +62,7 @@ var periodicDumper = {
       var localName = this.generateDumpFilename();
       var file = this.getOutputDirectory();
       file.append(localName);
-      this.prepareDirectory(file.parent);
+      ensureDirectoryExist(file.parent);
 
       var anonymize = prefs.getPref(BASE + 'anonymize');
       var start = Date.now();

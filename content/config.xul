@@ -14,6 +14,7 @@
 <prefwindow id="periodic-memory-usage-dumper-config"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     title="&config.title;">
+    <script type="application/javascript" src="config.js"/>
 
     <prefpane id="prefpane-general" label="&config.general;">
         <preferences>
@@ -75,6 +76,8 @@
             <label id="outputDirectory-label-after"
                 control="outputDirectory-textbox"
                 value="&config.outputDirectory.after;"/>
+            <button label="&config.outputDirectory.open;"
+                oncommand="openOutputDirectory()"/>
         </hbox>
         <hbox style="margin-left:1em">
           <description flex="1">&config.outputDirectory.description;</description>
