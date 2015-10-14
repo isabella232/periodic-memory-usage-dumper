@@ -76,7 +76,7 @@
                 control="outputDirectory-textbox"
                 value="&config.outputDirectory.after;"/>
         </hbox>
-        <hbox>
+        <hbox style="margin-left:1em">
           <description flex="1">&config.outputDirectory.description;</description>
         </hbox>
 
