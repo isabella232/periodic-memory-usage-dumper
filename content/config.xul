@@ -76,6 +76,9 @@
                 control="outputDirectory-textbox"
                 value="&config.outputDirectory.after;"/>
         </hbox>
+        <hbox>
+          <description flex="1">&config.outputDirectory.description;</description>
+        </hbox>
 
         <hbox align="center">
             <label id="maxFiles-label-before"
