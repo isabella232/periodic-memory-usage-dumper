@@ -35,6 +35,10 @@ var DAY_IN_SECONDS = DAY_IN_HOURS * HOUR_IN_MINUTES * MINUTE_IN_SECONDS;
 
 var timer = Cu.import('resource://gre/modules/Timer.jsm', {});
 var { Promise } = Cu.import('resource://gre/modules/Promise.jsm', {});
+var { Services } = Cu.import('resource://gre/modules/Services.jsm', {});
+
+var isWindows = /^win/i.test(Services.appinfo.OS);
+var pathDelimiter = isWindows ? '\\' : '/' ;
 
 var periodicDumper = {
   generateDumpFilename: function() {
@@ -58,7 +62,7 @@ var periodicDumper = {
       var name = matched.replace(/^\[|\]$/g, '');
       try {
         let file = DIRService.get(name, Ci.nsIFile);
-        return file.path;
+        return file.path + pathDelimiter;
       }
       catch(error) {
         return matched;
