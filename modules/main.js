@@ -25,11 +25,7 @@ var DAY_IN_SECONDS = DAY_IN_HOURS * HOUR_IN_MINUTES * MINUTE_IN_SECONDS;
     prefs.setDefaultPref(BASE + 'maxFiles', 500);
 
   if (prefs.getDefaultPref(BASE + 'outputDirectory') === null) {
-    let dir = Cc['@mozilla.org/file/directory_service;1']
-                 .getService(Ci.nsIProperties)
-                 .get('ProfD', Ci.nsIFile);
-    dir.append('memory-usage-dumps');
-    prefs.setDefaultPref(BASE + 'outputDirectory', dir.path);
+    prefs.setDefaultPref(BASE + 'outputDirectory', '[ProfD]memory-usage-dumps');
   }
 }
 
