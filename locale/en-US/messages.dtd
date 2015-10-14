@@ -5,7 +5,7 @@
 <!ENTITY config.intervalSeconds.before "Dump memory usage on every">
 <!ENTITY config.intervalSeconds.after  "seconds">
 <!ENTITY config.anonymize "Anonymize privacy data">
-<!ENTITY config.outputDirectory.before "Directory to output files">
+<!ENTITY config.outputDirectory.before "Directory to output files:">
 <!ENTITY config.outputDirectory.after  "">
 <!ENTITY config.outputDirectory.description "Available placeholders for a relative path: [Home], [ProfD], and so on.">
 <!ENTITY config.maxFiles.before "Store only latest">
