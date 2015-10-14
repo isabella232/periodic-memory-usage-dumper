@@ -33,6 +33,8 @@ var timer = Cu.import('resource://gre/modules/Timer.jsm', {});
 var { Promise } = Cu.import('resource://gre/modules/Promise.jsm', {});
 var { Services } = Cu.import('resource://gre/modules/Services.jsm', {});
 
+var resolveRelativePath = require('lib/resolveRelativePath').resolveRelativePath;
+
 var isWindows = /^win/i.test(Services.appinfo.OS);
 var pathDelimiter = isWindows ? '\\' : '/' ;
 
@@ -52,18 +54,7 @@ var periodicDumper = {
 
   getOutputDirectory: function() {
     var path = prefs.getPref(BASE + 'outputDirectory');
-    var DIRService = Cc['@mozilla.org/file/directory_service;1']
-                       .getService(Ci.nsIProperties)
-    path = path.replace(/\[[\\]]+\]/g, function(matched) {
-      var name = matched.replace(/^\[|\]$/g, '');
-      try {
-        let file = DIRService.get(name, Ci.nsIFile);
-        return file.path + pathDelimiter;
-      }
-      catch(error) {
-        return matched;
-      }
-    });
+    path = resolveRelativePath(path);
     var file = Cc['@mozilla.org/file/local;1']
                  .createInstance(Ci.nsILocalFile);
     file.initWithPath(path);
@@ -168,7 +159,7 @@ function shutdown() {
   idleService.removeIdleObserver(periodicDumper, idleSeconds);
   periodicDumper.stop();
 
-  timer = Promise = prefs =
+  timer = Promise = Services = prefs = resolveRelativePath =
     idleService = periodicDumper =
       undefined;
 }
