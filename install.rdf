@@ -6,7 +6,7 @@
                    em:id="periodic-memory-usage-dumper@clear-code.com"
                    em:name="Periodic Memory Usage Dumper"
                    em:version="0.1"
-                   em:description="Saves memory usage information periodically (mainly for debugging)."
+                   em:description="Saves memory usage information periodically (mainly for troubleshooting)."
                    em:creator="ClearCode Inc."
                    em:homepageURL="http://www.clear-code.com/"
                    em:optionsURL="chrome://periodic-memory-usage-dumper/content/config.xul"
