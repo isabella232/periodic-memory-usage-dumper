@@ -126,6 +126,18 @@ var periodicDumper = {
     this.lastTimeout = null;
   },
 
+  registerIdleObserver: function() {
+    var idleSeconds = Math.max(10, prefs.getPref(BASE + 'idleSeconds'));
+    idleService.addIdleObserver(this, idleSeconds);
+    this.lastIdleSeconds = idleSeconds;
+  },
+
+  unregisterIdleObserver: function() {
+    idleService.addIdleObserver(this, this.lastIdleSeconds);
+  },
+
+  domain: BASE,
+
   observe: function(aSubject, aTopic, aData) {
     // console.log([aSubject, aTopic, aData]);
     switch (aTopic) {
@@ -140,17 +152,27 @@ var periodicDumper = {
           console.log('active: stop to dump');
         this.stop();
         break;
+
+      case 'nsPref:changed':
+        {
+          switch (aData.replace(BASE, '')) {
+            case 'idleSeconds':
+              this.unregisterIdleObserver();
+              this.registerIdleObserver();
+              break;
+          }
+        }
+        break;
     }
   }
 };
 
 var idleService = Cc['@mozilla.org/widget/idleservice;1']
                     .getService(Ci.nsIIdleService);
-var idleSeconds = Math.max(10, prefs.getPref(BASE + 'idleSeconds'));
-idleService.addIdleObserver(periodicDumper, idleSeconds);
+periodicDumper.registerIdleObserver();
 
 function shutdown() {
-  idleService.removeIdleObserver(periodicDumper, idleSeconds);
+  periodicDumper.unregisterIdleObserver();
   periodicDumper.stop();
 
   timer = Promise = Services = prefs = resolveRelativePath =
