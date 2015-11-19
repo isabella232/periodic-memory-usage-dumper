@@ -170,8 +170,10 @@ var periodicDumper = {
 var idleService = Cc['@mozilla.org/widget/idleservice;1']
                     .getService(Ci.nsIIdleService);
 periodicDumper.registerIdleObserver();
+prefs.addPrefListener(periodicDumper);
 
 function shutdown() {
+  prefs.removePrefListener(periodicDumper);
   periodicDumper.unregisterIdleObserver();
   periodicDumper.stop();
 
