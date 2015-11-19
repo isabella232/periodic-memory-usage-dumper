@@ -133,7 +133,7 @@ var periodicDumper = {
   },
 
   unregisterIdleObserver: function() {
-    idleService.addIdleObserver(this, this.lastIdleSeconds);
+    idleService.removeIdleObserver(this, this.lastIdleSeconds);
   },
 
   domain: BASE,
